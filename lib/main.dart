@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class MyTabbedScopedModelDemo extends StatelessWidget {
-  const MyTabbedScopedModelDemo({this.title, this.color});
+class MyTabbedScopedModelProject extends StatelessWidget {
+  const MyTabbedScopedModelProject({this.title, this.color});
 
   final String title;
   final Color color;
@@ -17,8 +17,8 @@ class MyTabbedScopedModelDemo extends StatelessWidget {
         ),                
         body: Column(
           children: <Widget>[
-          NumbersCarousel(color: color),
-          NumbersList(),
+          DrinksCarousel(color: color),
+          DrinksList(),
           ],
         ),
       ),
@@ -26,52 +26,72 @@ class MyTabbedScopedModelDemo extends StatelessWidget {
   }
 }
 
-class Number {
-  Number(this.title, this.image);
+class Drink {
+  Drink(this.title, this.image);
   final String title;
   final String image;
 }
 
-List<Number> nums = <Number>[
+List<Drink> coffee = <Drink>[
   //PUT THE TITLE IMAGES IN HERE
-  Number('1', 'assets/img/1-1.jpg'),
-  Number('2', 'assets/img/2-1.jpg'),
+  Drink('Black Coffee', 'assets/img/black-coffee.jpeg'),
+  Drink('Cappuccino', 'assets/img/cappuccino.jpeg'),
+  Drink('Espresso', 'assets/img/espresso.jpeg'),
+  Drink('Latte', 'assets/img/latte.jpeg'),
 ];
 
-List<Number> ones = <Number>[
-  //PUT THE BOTTOM IMAGES IN HERE
-  Number('1-2', 'assets/img/1-1.jpg'),
-  Number('1-3', 'assets/img/2-1.jpg'),
-  Number('1-4', 'assets/img/1-1.jpg'),
-  Number('1-5', 'assets/img/2-1.jpg'),
-  Number('1-6', 'assets/img/2-1.jpg'),
-  Number('1-7', 'assets/img/2-1.jpg'),
+List<Drink> tea = <Drink>[
+  //PUT THE TITLE IMAGES IN HERE
+  Drink('Black Tea', 'assets/img/black-tea.jpeg'),
+  Drink('Brown Tea', 'assets/img/brown-tea.jpeg'),
+  Drink('English Tea', 'assets/img/english-tea.jpeg'),
+  Drink('Herbal Tea', 'assets/img/herbal-tea.jpeg'),
+  Drink('Mint Tea', 'assets/img/mint-tea.jpeg'),
 ];
 
-List<Number> twos = <Number>[
+List<Drink> juice = <Drink>[
+  //PUT THE TITLE IMAGES IN HERE
+  Drink('Lemon Juice', 'assets/img/lemon.jpeg'),
+  Drink('Lime Juice', 'assets/img/lime.jpeg'),
+  Drink('Pink Grape Juice', 'assets/img/pink-grape.jpeg'),
+  Drink('Plum Juice', 'assets/img/plum.jpeg'),
+  Drink('Tomato Juice', 'assets/img/tomato.jpeg'),
+];
+
+List<Drink> smoothie = <Drink>[
   //PUT THE BOTTOM IMAGES IN HERE
-  Number('2-2', 'assets/img/1-1.jpg'),
-  Number('2-3', 'assets/img/2-1.jpg'),
-  Number('2-4', 'assets/img/1-1.jpg'),
+  Drink('Apple Smoothie', 'assets/img/apple-smoothie.jpeg'),
+  Drink('Blackberry Smoothie', 'assets/img/black-smoothie.jpeg'),
+  Drink('Kiwi Fruit Smoothie', 'assets/img/kiwi-smoothie.jpeg'),
+  Drink('Raspberry Smoothie', 'assets/img/rasberry-smoothie.jpeg'),
+  Drink('1-6', 'assets/img/2-1.jpeg'),
+  Drink('1-7', 'assets/img/2-1.jpeg'),
+];
+
+List<Drink> twos = <Drink>[
+  //PUT THE BOTTOM IMAGES IN HERE
+  Drink('2-2', 'assets/img/1-1.jpeg'),
+  Drink('2-3', 'assets/img/2-1.jpeg'),
+  Drink('2-4', 'assets/img/1-1.jpeg'),
 ];
 
 class MyModel extends Model {
   //PRIVATE
-  List<Number> _chosenNumber = ones;
+  List<Drink> _chosenDrink = coffee;
   //PUBLIC PROP GETTER
-  List<Number> get chosenNumber => _chosenNumber;
+  List<Drink> get chosenDrink => _chosenDrink;
   //PUBLIC PROP SETTER
-  set chosenNumber(List<Number> type) {
-    _chosenNumber = type;
+  set chosenDrink(List<Drink> type) {
+    _chosenDrink = type;
   //IF NOTHING CHANGED
   notifyListeners();
   }
 }
 
-class NumbersCard extends StatelessWidget {
-  const NumbersCard({this.instantsNumber});
+class DrinksCard extends StatelessWidget {
+  const DrinksCard({this.instantsDrink});
 
-  final Number instantsNumber;
+  final Drink instantsDrink;
 
   @override 
   Widget build(BuildContext context) {
@@ -80,7 +100,7 @@ class NumbersCard extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Image.asset(
-            instantsNumber.image,
+            instantsDrink.image,
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -92,7 +112,7 @@ class NumbersCard extends StatelessWidget {
   }
 }
 
-class NumbersList extends StatelessWidget {
+class DrinksList extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
     return ScopedModelDescendant<MyModel>(
@@ -101,9 +121,9 @@ class NumbersList extends StatelessWidget {
           child: GridView.count(
             crossAxisCount: 2,
             padding: EdgeInsets.all(6.0),
-            children: model.chosenNumber.map((e) {
-              return NumbersCard(
-                instantsNumber: e,
+            children: model.chosenDrink.map((e) {
+              return DrinksCard(
+                instantsDrink: e,
               );
             }).toList(),
           ),
@@ -113,16 +133,16 @@ class NumbersList extends StatelessWidget {
   }
 }
 
-class NumbersCarousel extends StatefulWidget {
-  NumbersCarousel({this.color});
+class DrinksCarousel extends StatefulWidget {
+  DrinksCarousel({this.color});
 
   final Color color;
 
   @override 
-  _NumbersCarouselState createState() => _NumbersCarouselState();
+  _DrinksCarouselState createState() => _DrinksCarouselState();
 }
 
-class _NumbersCarouselState extends State<NumbersCarousel>
+class _DrinksCarouselState extends State<DrinksCarousel>
   with SingleTickerProviderStateMixin {
     TabController _tabController;
 
@@ -171,11 +191,11 @@ class _NumbersCarouselState extends State<NumbersCarousel>
               builder: (context, child, myModel) {
                 return TabBarView(
                   controller: _tabController,
-                  children: nums.map((numberType) {
+                  children: nums.map((drinkType) {
                     return GestureDetector(
                       onTap: () {
                         var type;
-                        switch (numberType.title) {
+                        switch (drinkType.title) {
                           case '1':
                           type = ones;
                           break;
@@ -183,13 +203,13 @@ class _NumbersCarouselState extends State<NumbersCarousel>
                           type = twos;
                           break;
                           default:                         
-                          throw '${numberType.title} type not recognized';
+                          throw '${drinkType.title} type not recognized';
                         }
                         //CALLS THE SETTER
-                        myModel.chosenNumber = type;
+                        myModel.chosenDrink = type;
                       },
-                      child: NumbersCard(
-                        instantsNumber: numberType,
+                      child: DrinksCard(
+                        instantsDrink: drinkType,
                       ),
                     );
                   }).toList(),
