@@ -92,17 +92,30 @@ class DrinksCard extends StatelessWidget {
   final Drink instantsDrink;
 
   @override 
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) {  
+    return Container( 
+      alignment: Alignment.center,
       child: Center(
         child: Stack(
-          children: <Widget>[
-            Image.asset(
+          children: <Widget>[            
+            Image.asset(             
             instantsDrink.image,
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,            
             ),
+            Container(  
+              alignment: Alignment.topCenter,
+              padding: EdgeInsets.all(10.0),           
+              child: Text(
+                "FILLER TEXT",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0
+                )
+              )
+             )              
           ],
         )
       ),
@@ -118,7 +131,7 @@ class DrinksList extends StatelessWidget {
         return Expanded(
           child: GridView.count(
             crossAxisCount: 2,
-            padding: EdgeInsets.all(6.0),
+            padding: EdgeInsets.all(10.0),
             children: model.chosenDrink.map((e) {
               return DrinksCard(
                 instantsDrink: e,
@@ -178,8 +191,8 @@ class _DrinksCarouselState extends State<DrinksCarousel>
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
-            width: 4.0,
-            color: myColor,
+            width: 10.0,
+            color: Colors.black,
           ),
         ),
         child: Stack(
@@ -227,7 +240,7 @@ class _DrinksCarouselState extends State<DrinksCarousel>
                 child: TabPageSelector(
                   controller: _tabController,
                   color: Colors.white,
-                  selectedColor: Colors.white,
+                  selectedColor: Colors.blue,
                   indicatorSize: 20,
                 ),
               ),
@@ -237,7 +250,7 @@ class _DrinksCarouselState extends State<DrinksCarousel>
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: Colors.white,
+                  color: Colors.blue,
                   size: 36,
                 ),
                 onPressed: () {
@@ -250,7 +263,7 @@ class _DrinksCarouselState extends State<DrinksCarousel>
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_forward,
-                  color:Colors.white,
+                  color:Colors.blue,
                   size: 36,
                 ),
                 onPressed: () {
