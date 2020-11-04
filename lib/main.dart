@@ -32,6 +32,13 @@ class Drink {
   final String image;
 }
 
+List<Drink> drinks = <Drink>[
+  Drink('Black Coffee', 'assets/img/black-coffee.jpeg'),
+  Drink('Black Tea', 'assets/img/black-tea.jpeg'),
+  Drink('Lemon Juice', 'assets/img/lemon.jpeg'),
+  Drink('Apple Smoothie', 'assets/img/apple-smoothie.jpeg'),
+];
+
 List<Drink> coffee = <Drink>[
   //PUT THE TITLE IMAGES IN HERE
   Drink('Black Coffee', 'assets/img/black-coffee.jpeg'),
@@ -64,15 +71,6 @@ List<Drink> smoothie = <Drink>[
   Drink('Blackberry Smoothie', 'assets/img/black-smoothie.jpeg'),
   Drink('Kiwi Fruit Smoothie', 'assets/img/kiwi-smoothie.jpeg'),
   Drink('Raspberry Smoothie', 'assets/img/rasberry-smoothie.jpeg'),
-  Drink('1-6', 'assets/img/2-1.jpeg'),
-  Drink('1-7', 'assets/img/2-1.jpeg'),
-];
-
-List<Drink> twos = <Drink>[
-  //PUT THE BOTTOM IMAGES IN HERE
-  Drink('2-2', 'assets/img/1-1.jpeg'),
-  Drink('2-3', 'assets/img/2-1.jpeg'),
-  Drink('2-4', 'assets/img/1-1.jpeg'),
 ];
 
 class MyModel extends Model {
@@ -149,7 +147,7 @@ class _DrinksCarouselState extends State<DrinksCarousel>
     @override 
     void initState() {
       super.initState();
-      _tabController = TabController(length: nums.length, vsync: this);
+      _tabController = TabController(length: drinks.length, vsync: this);
     }
 
     @override 
@@ -160,10 +158,10 @@ class _DrinksCarouselState extends State<DrinksCarousel>
 
     void _changeImage({int delta}) {
       var newTabIndex = _tabController.index + delta;
-      if (newTabIndex >= nums.length) {
+      if (newTabIndex >= drinks.length) {
         newTabIndex = 0;
       } else if (newTabIndex < 0) {
-        newTabIndex = nums.length - 1;
+        newTabIndex = drinks.length - 1;
       }
       _tabController.animateTo(
         newTabIndex,
@@ -191,16 +189,22 @@ class _DrinksCarouselState extends State<DrinksCarousel>
               builder: (context, child, myModel) {
                 return TabBarView(
                   controller: _tabController,
-                  children: nums.map((drinkType) {
+                  children: drinks.map((drinkType) {
                     return GestureDetector(
                       onTap: () {
                         var type;
                         switch (drinkType.title) {
                           case '1':
-                          type = ones;
+                          type = coffee;
                           break;
                           case '2':
-                          type = twos;
+                          type = tea;
+                          break;
+                          case '3':
+                          type = juice;
+                          break;
+                          case '4':
+                          type = smoothie;
                           break;
                           default:                         
                           throw '${drinkType.title} type not recognized';
