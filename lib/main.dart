@@ -66,4 +66,88 @@ class MyModel extends Model {
   }
 }
 
-class NumbersCard extends
+class NumbersCard extends StatelessWidget {
+  const NumbersCard({this.instantNumber});
+
+  final Number instantNumber;
+
+  @override 
+  Widget build(BuildContext context) {
+    return Card(
+      child: Center(
+        child: Stack(
+          children: <Widget>[
+            Image.asset(
+            instantsNumber.image,
+            height: double.infinity,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            ),
+          ],
+        )
+      ),
+    );
+  }
+}
+
+class NumbersList extends StatelessWidget {
+  @override 
+  Widget build(BuildContext context) {
+    return ScopedModelDescendant<MyModel>(
+      builder: (context, child, model) {
+        return Expanded(
+          child: GridView.count(
+            crossAxisCount: 2,
+            padding: EdgeInsets.all(6.0),
+            children: model.chosenNumber.map((e)) {
+              return NumbersCard(
+                instantsNumber: e,
+              );
+            }).toList(),
+          ),
+        ),
+      },
+    );
+  }
+}
+
+class NumbersCarousel extends StatefulWidget {
+  NumbersCarousel({this.color});
+
+  final Color color;
+
+  @override 
+  _NumbersCarouselState createState() => _NumbersCarouselState();
+}
+
+class _NumbersCarouselState extends State<NumbersCarousel>
+  with SingleTickerProviderStateMixin {
+    TabController _tabController;
+
+    @override 
+    void initState() {
+      super.initState();
+      _tabController = TabController(length: nums.length, vsync: this);
+    }
+
+    @override 
+    void dispose() {
+      super.dispose();
+      _tabController.dispose();
+    }
+
+    void _changeImage({int delta}) {
+      var newTabIndex = _tabController.index + delta;
+      if (newTabIndex >= nums.length) {
+        newTabIndex = 0;
+      } else if (newTabIndex < 0) {
+        newTabIndex = nums.length - 1;
+      }
+      _tabController.animateTo(
+        newTabIndex,
+      );
+    }
+  }
+
+  @override 
+  Widgit 
