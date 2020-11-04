@@ -6,7 +6,7 @@ void main() => runApp(
     );
 
 class MyTabbedScopedModelAssignment extends StatelessWidget {
-  final Color themeColor = Color(0xFF808366);
+  final Color themeColor = Colors.blue;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

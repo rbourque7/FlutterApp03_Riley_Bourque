@@ -101,7 +101,7 @@ class DrinksCard extends StatelessWidget {
             instantsDrink.image,
             height: double.infinity,
             width: double.infinity,
-            fit: BoxFit.cover,
+            fit: BoxFit.cover,            
             ),
           ],
         )
@@ -227,7 +227,7 @@ class _DrinksCarouselState extends State<DrinksCarousel>
                 child: TabPageSelector(
                   controller: _tabController,
                   color: Colors.white,
-                  selectedColor: myColor,
+                  selectedColor: Colors.white,
                   indicatorSize: 20,
                 ),
               ),
@@ -237,7 +237,7 @@ class _DrinksCarouselState extends State<DrinksCarousel>
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: myColor,
+                  color: Colors.white,
                   size: 36,
                 ),
                 onPressed: () {
@@ -250,7 +250,7 @@ class _DrinksCarouselState extends State<DrinksCarousel>
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_forward,
-                  color:myColor,
+                  color:Colors.white,
                   size: 36,
                 ),
                 onPressed: () {
