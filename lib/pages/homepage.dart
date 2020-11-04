@@ -194,16 +194,16 @@ class _DrinksCarouselState extends State<DrinksCarousel>
                       onTap: () {
                         var type;
                         switch (drinkType.title) {
-                          case '1':
+                          case 'Black Coffee':
                           type = coffee;
                           break;
-                          case '2':
+                          case 'Black Tea':
                           type = tea;
                           break;
-                          case '3':
+                          case 'Lemon Juice':
                           type = juice;
                           break;
-                          case '4':
+                          case 'Apple Smoothie':
                           type = smoothie;
                           break;
                           default:                         

@@ -6,11 +6,11 @@ void main() => runApp(
     );
 
 class MyTabbedScopedModelAssignment extends StatelessWidget {
-  final Color themeColor = Colors.blue;
+  final Color themeColor = Color(0xFF808366);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Store Home',
+      title: 'Tabbed with Scoped Model Demos',
       theme: ThemeData.light().copyWith(
         brightness: Brightness.light,
         accentColor: Colors.cyan[600],
@@ -34,6 +34,7 @@ class MyTabbedScopedModelAssignment extends StatelessWidget {
 
          home: MyTabbedScopedModelProject03(
          title: 'Store Home',
+         color: themeColor,
       ),
     );
   }
