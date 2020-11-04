@@ -11,13 +11,14 @@ class MyTabbedScopedModelDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModel<MyModel>(
       model: MyModel(),
-      child: Scaffold(appBar: AppBar( 
-        title: Text(title),
-        ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),                
         body: Column(
-          children: <Widgit>[
+          children: <Widget>[
           NumbersCarousel(color: color),
-          NumbersLists(),
+          NumbersList(),
           ],
         ),
       ),
@@ -68,9 +69,9 @@ class MyModel extends Model {
 }
 
 class NumbersCard extends StatelessWidget {
-  const NumbersCard({this.instantNumber});
+  const NumbersCard({this.instantsNumber});
 
-  final Number instantNumber;
+  final Number instantsNumber;
 
   @override 
   Widget build(BuildContext context) {
@@ -100,13 +101,13 @@ class NumbersList extends StatelessWidget {
           child: GridView.count(
             crossAxisCount: 2,
             padding: EdgeInsets.all(6.0),
-            children: model.chosenNumber.map((e)) {
+            children: model.chosenNumber.map((e) {
               return NumbersCard(
                 instantsNumber: e,
               );
             }).toList(),
           ),
-        ),
+        );
       },
     );
   }
@@ -170,7 +171,7 @@ class _NumbersCarouselState extends State<NumbersCarousel>
               builder: (context, child, myModel) {
                 return TabBarView(
                   controller: _tabController,
-                  children: nums.map((numberType)) {
+                  children: nums.map((numberType) {
                     return GestureDetector(
                       onTap: () {
                         var type;
