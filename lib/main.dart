@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class MyTabbedScopedModelDemo extends StatelessWidget {
   const MyTabbedScopedModelDemo({this.title, this.color});
@@ -147,7 +148,94 @@ class _NumbersCarouselState extends State<NumbersCarousel>
         newTabIndex,
       );
     }
-  }
 
   @override 
-  Widgit 
+  Widget build(BuildContext context) {
+    Color myColor = widget.color;
+
+    return SizedBox(
+      height: 250.0,
+      width: double.infinity,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 4.0,
+            color: myColor,
+          ),
+        ),
+        child: Stack(
+          children: <Widget>[
+            ScopedModelDescendant<MyModel>(
+              rebuildOnChange: false,
+              builder: (context, child, myModel) {
+                return TabBarView(
+                  controller: _tabController,
+                  children: nums.map((numberType)) {
+                    return GestureDetector(
+                      onTap: () {
+                        var type;
+                        switch (numberType.title) {
+                          case '1':
+                          type = ones;
+                          break;
+                          case '2':
+                          type = twos;
+                          break;
+                          default:                         
+                          throw '${numberType.title} type not recognized';
+                        }
+                        //CALLS THE SETTER
+                        myModel.chosenNumber = type;
+                      },
+                      child: NumbersCard(
+                        instantsNumber: numberType,
+                      ),
+                    );
+                  }).toList(),
+                );
+              },
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TabPageSelector(
+                  controller: _tabController,
+                  color: Colors.white,
+                  selectedColor: myColor,
+                  indicatorSize: 20,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: myColor,
+                  size: 36,
+                ),
+                onPressed: () {
+                  _changeImage(delta: -1);
+                },
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward,
+                  color:myColor,
+                  size: 36,
+                ),
+                onPressed: () {
+                  _changeImage(delta: 1);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
