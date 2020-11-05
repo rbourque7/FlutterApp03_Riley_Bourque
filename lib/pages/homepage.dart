@@ -131,6 +131,8 @@ class DrinksList extends StatelessWidget {
         return Expanded(
           child: GridView.count(
             crossAxisCount: 2,
+            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 10.0,
             padding: EdgeInsets.all(10.0),
             children: model.chosenDrink.map((e) {
               return DrinksCard(
